@@ -3,34 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttshivhu <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ttshivhu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/25 14:26:27 by ttshivhu          #+#    #+#             */
-/*   Updated: 2017/05/29 12:32:51 by ttshivhu         ###   ########.fr       */
+/*   Created: 2017/07/17 10:45:10 by ttshivhu          #+#    #+#             */
+/*   Updated: 2017/07/17 10:45:18 by ttshivhu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+size_t			ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t i;
-	size_t j;
-	size_t n;
+	char		*cr;
+	char		*redr;
+	size_t		l;
 
-	n = ft_strlen(dest);
-	i = n;
-	j = 0;
-	if (size < n)
-		return (ft_strlen(src) + size);
-	if (size == n)
-		return (ft_strlen(src) + n);
-	while (src[j] && j < size - n - 1)
+	cr = (char *)ft_memchr(dst, '\0', size);
+	if (cr == NULL)
+		return (size + ft_strlen(src));
+	redr = (char *)src;
+	l = (size_t)(cr - dst) + ft_strlen(redr);
+	while ((size_t)(cr - dst) < size - 1 && *redr != '\0')
 	{
-		dest[i] = src[j];
-		i++;
-		j++;
+		*cr = *redr;
+		cr++;
+		redr++;
 	}
-	dest[i] = '\0';
-	return (n + ft_strlen(src));
+	*cr = '\0';
+	return (l);
 }

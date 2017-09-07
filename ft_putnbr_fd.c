@@ -6,7 +6,7 @@
 /*   By: ttshivhu <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 18:51:53 by ttshivhu          #+#    #+#             */
-/*   Updated: 2017/05/31 09:53:26 by ttshivhu         ###   ########.fr       */
+/*   Updated: 2017/08/04 09:28:20 by ttshivhu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void		min_int(int sign, int fd)
 		ft_putstr_fd("2147483647", fd);
 }
 
-void			ft_putnbr_fd(int n, int fd)
+void			ft_putnbr_fd(long long n, int fd)
 {
 	if (n == -2147483648)
 		return (min_int(1, fd));

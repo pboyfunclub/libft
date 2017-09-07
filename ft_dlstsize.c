@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_dlstsize.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttshivhu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/07 13:50:01 by ttshivhu          #+#    #+#             */
-/*   Updated: 2017/06/07 14:27:04 by ttshivhu         ###   ########.fr       */
+/*   Created: 2017/09/07 10:14:44 by ttshivhu          #+#    #+#             */
+/*   Updated: 2017/09/07 10:14:54 by ttshivhu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+size_t	ft_dlstsize(t_dlist *lst)
 {
-	t_list	*sortie;
+	size_t	i;
 
-	if (lst)
+	i = 0;
+	while (lst)
 	{
-		sortie = f(lst);
-		sortie->next = ft_lstmap(lst->next, f);
-		return (sortie);
+		i++;
+		lst = lst->next;
 	}
-	return (NULL);
+	return (i);
 }

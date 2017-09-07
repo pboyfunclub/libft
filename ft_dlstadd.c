@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_dlstadd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttshivhu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/07 13:50:01 by ttshivhu          #+#    #+#             */
-/*   Updated: 2017/06/07 14:27:04 by ttshivhu         ###   ########.fr       */
+/*   Created: 2017/09/07 10:11:09 by ttshivhu          #+#    #+#             */
+/*   Updated: 2017/09/07 10:11:40 by ttshivhu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+void	ft_dlstadd(t_dlist **head, t_dlist *new)
 {
-	t_list	*sortie;
+	t_dlist	*ptr;
 
-	if (lst)
+	ptr = NULL;
+	if (!new || !head)
+		return ;
+	new->next = *head;
+	if (*head)
 	{
-		sortie = f(lst);
-		sortie->next = ft_lstmap(lst->next, f);
-		return (sortie);
+		ptr = (*head)->prev;
+		(*head)->prev = new;
 	}
-	return (NULL);
+	new->prev = ptr;
+	if (ptr)
+		ptr->next = new;
+	*head = new;
 }

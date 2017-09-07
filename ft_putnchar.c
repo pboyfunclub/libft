@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_putnchar.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttshivhu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/07 13:50:01 by ttshivhu          #+#    #+#             */
-/*   Updated: 2017/06/07 14:27:04 by ttshivhu         ###   ########.fr       */
+/*   Created: 2017/08/03 11:05:06 by ttshivhu          #+#    #+#             */
+/*   Updated: 2017/08/03 11:07:04 by ttshivhu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+void	ft_putnchar(char c, int n)
 {
-	t_list	*sortie;
+	int i;
 
-	if (lst)
+	i = 0;
+	while (i < n)
 	{
-		sortie = f(lst);
-		sortie->next = ft_lstmap(lst->next, f);
-		return (sortie);
+		write(1, &c, 1);
+		i++;
 	}
-	return (NULL);
 }

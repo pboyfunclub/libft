@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_dlstdelstr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttshivhu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/07 13:50:01 by ttshivhu          #+#    #+#             */
-/*   Updated: 2017/06/07 14:27:04 by ttshivhu         ###   ########.fr       */
+/*   Created: 2017/09/07 10:12:39 by ttshivhu          #+#    #+#             */
+/*   Updated: 2017/09/07 10:12:47 by ttshivhu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+void	ft_dlstdelstr(t_dlist **lst)
 {
-	t_list	*sortie;
+	t_dlist *tmp;
 
-	if (lst)
+	*lst = ft_dlstgethead(*lst);
+	while (*lst)
 	{
-		sortie = f(lst);
-		sortie->next = ft_lstmap(lst->next, f);
-		return (sortie);
+		tmp = *lst;
+		free((*lst)->content);
+		*lst = (*lst)->next;
+		free(tmp);
 	}
-	return (NULL);
 }

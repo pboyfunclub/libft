@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_dlstaddback.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttshivhu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/07 13:50:01 by ttshivhu          #+#    #+#             */
-/*   Updated: 2017/06/07 14:27:04 by ttshivhu         ###   ########.fr       */
+/*   Created: 2017/09/07 10:11:57 by ttshivhu          #+#    #+#             */
+/*   Updated: 2017/09/07 10:12:11 by ttshivhu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+void	ft_dlstaddback(t_dlist **head, t_dlist *new)
 {
-	t_list	*sortie;
+	t_dlist	*ptr;
 
-	if (lst)
-	{
-		sortie = f(lst);
-		sortie->next = ft_lstmap(lst->next, f);
-		return (sortie);
-	}
-	return (NULL);
+	if (!new || !head)
+		return ;
+	while (*head && (*head)->next)
+		head = &(*head)->next;
+	ptr = *head;
+	if (*head)
+		(*head)->next = new;
+	else
+		*head = new;
+	new->prev = ptr;
 }
